@@ -1,9 +1,13 @@
 ---
-  
-- hosts: all
- 
+- name: Update Debian-based systems
+  hosts: all
+  become: yes  # Run tasks as root
+
   tasks:
-    - name: Update and upgrade apt packages
+    - name: Update package cache
       apt:
         update_cache: yes
+
+    - name: Upgrade all packages
+      apt:
         upgrade: yes
